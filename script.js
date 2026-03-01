@@ -1,39 +1,22 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const images = document.querySelectorAll(".popup-img");
-  const popup = document.getElementById("popup");
-  const popupImg = document.getElementById("popup-img");
-  const closeBtn = document.getElementById("closeBtn");
+const images = document.querySelectorAll(".popup-img");
+const popup = document.getElementById("popup");
+const popupImg = document.getElementById("popup-img");
+const closeBtn = document.querySelector(".close");
 
-  if (!images.length || !popup || !popupImg || !closeBtn) {
-    console.log("Popup elements missing:", { images: images.length, popup, popupImg, closeBtn });
-    return;
-  }
-
-  function openPopup(src, altText) {
+images.forEach(img => {
+  img.addEventListener("click", () => {
     popup.style.display = "flex";
-    popupImg.src = src;
-    popupImg.alt = altText || "صورة المنتج";
-    document.body.style.overflow = "hidden";
-  }
+    popupImg.src = img.src;
+    popupImg.alt = img.alt || "صورة المنتج";
+  });
+});
 
-  function closePopup() {
+closeBtn.addEventListener("click", () => {
+  popup.style.display = "none";
+});
+
+popup.addEventListener("click", (e) => {
+  if (e.target !== popupImg) {
     popup.style.display = "none";
-    popupImg.src = "";
-    document.body.style.overflow = "";
   }
-
-  images.forEach(img => {
-    img.addEventListener("click", () => openPopup(img.src, img.alt));
-    img.addEventListener("touchstart", () => openPopup(img.src, img.alt), { passive: true });
-  });
-
-  closeBtn.addEventListener("click", closePopup);
-
-  popup.addEventListener("click", (e) => {
-    if (e.target === popup) closePopup();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closePopup();
-  });
 });
