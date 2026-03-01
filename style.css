@@ -1,0 +1,68 @@
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#0b0b10;
+  color:white;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px;
+  background:#111;
+}
+
+.logo{
+  background:linear-gradient(45deg,#ffd400,#7c3aed);
+  padding:10px 15px;
+  border-radius:10px;
+  font-weight:bold;
+  color:black;
+}
+
+.cta{
+  background:#25D366;
+  padding:10px 15px;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+}
+
+.wrap{
+  padding:20px;
+}
+
+.grid{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.card{
+  background:#1a1a1f;
+  padding:15px;
+  border-radius:12px;
+  width:250px;
+}
+
+.img{
+  width:100%;
+  border-radius:10px;
+}
+
+.price{
+  color:#ffd400;
+  font-weight:bold;
+}
+
+.btn{
+  display:block;
+  margin-top:10px;
+  background:linear-gradient(45deg,#ffd400,#7c3aed);
+  color:black;
+  text-align:center;
+  padding:8px;
+  border-radius:8px;
+  text-decoration:none;
+}
