@@ -1,0 +1,81 @@
+﻿body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f4f6;
+}
+
+.header{
+  background:#111;
+  color:#ffd400;
+  text-align:center;
+  padding:20px;
+}
+
+.container{
+  padding:30px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* ✅ هنا التغيير المهم: contain بدل cover عشان الصورة تبان كاملة */
+.card img{
+  width:100%;
+  height:240px;          /* ثابت عشان الكروت تبقى متساوية */
+  object-fit:contain;    /* ✅ بدون قص */
+  background:#fff;       /* يملأ الفراغ اللي حوالين الصورة */
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.btn{
+  display:block;
+  margin-top:10px;
+  padding:12px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* Popup */
+.image-popup{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.image-popup img{
+  max-width:95%;
+  max-height:85%;
+  border-radius:10px;
+  background:#fff;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  color:white;
+  font-size:40px;
+  cursor:pointer;
+}
