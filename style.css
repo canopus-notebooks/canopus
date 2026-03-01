@@ -78,4 +78,20 @@
   color:white;
   font-size:40px;
   cursor:pointer;
+
+}
+/* ====== تحسينات للكمبيوتر ====== */
+@media (min-width: 900px){
+  .container{ padding:40px 60px; }
+  .products{ grid-template-columns:repeat(4, 1fr); } /* 4 كروت في الصف */
+  .card img{ height:240px; }
+}
+
+/* ====== تحسينات للموبايل ====== */
+@media (max-width: 600px){
+  .container{ padding:18px; }
+  .products{ grid-template-columns:repeat(2, 1fr); } /* 2 في الصف */
+  .card{ padding:12px; }
+  .card img{ height:170px; }
+  .btn{ padding:10px; font-size:14px; }
 }
