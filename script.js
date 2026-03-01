@@ -1,22 +1,39 @@
-const images = document.querySelectorAll(".popup-img");
-const popup = document.getElementById("popup");
-const popupImg = document.getElementById("popup-img");
-const closeBtn = document.querySelector(".close");
+document.addEventListener("DOMContentLoaded", () => {
+  const images = document.querySelectorAll(".popup-img");
+  const popup = document.getElementById("popup");
+  const popupImg = document.getElementById("popup-img");
+  const closeBtn = document.getElementById("closeBtn");
 
-images.forEach(img => {
-  img.addEventListener("click", () => {
-    popup.style.display = "flex";
-    popupImg.src = img.src;
-    popupImg.alt = img.alt || "ÕæÑÉ ÇáãäÊÌ";
-  });
-});
-
-closeBtn.addEventListener("click", () => {
-  popup.style.display = "none";
-});
-
-popup.addEventListener("click", (e) => {
-  if (e.target !== popupImg) {
-    popup.style.display = "none";
+  if (!images.length || !popup || !popupImg || !closeBtn) {
+    console.log("Popup elements missing:", { images: images.length, popup, popupImg, closeBtn });
+    return;
   }
+
+  function openPopup(src, altText) {
+    popup.style.display = "flex";
+    popupImg.src = src;
+    popupImg.alt = altText || "ØµÙˆØ±Ø© Ø§Ù„Ù…Ù†ØªØ¬";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closePopup() {
+    popup.style.display = "none";
+    popupImg.src = "";
+    document.body.style.overflow = "";
+  }
+
+  images.forEach(img => {
+    img.addEventListener("click", () => openPopup(img.src, img.alt));
+    img.addEventListener("touchstart", () => openPopup(img.src, img.alt), { passive: true });
+  });
+
+  closeBtn.addEventListener("click", closePopup);
+
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) closePopup();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closePopup();
+  });
 });
