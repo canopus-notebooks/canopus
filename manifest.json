@@ -1,0 +1,24 @@
+{
+  "name": "Canopus Notebooks",
+  "short_name": "Canopus",
+  "description": "نوت بوك وستيكرز بجودة استثنائية — صنع بالإيد",
+  "start_url": "/canopus/",
+  "display": "standalone",
+  "background_color": "#f5f3ee",
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
