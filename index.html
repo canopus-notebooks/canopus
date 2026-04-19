@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Google Analytics — ضع Measurement ID هنا بعد تسجيل الموقع -->
+  <!-- Google Analytics — ضع Measurement ID بعد التسجيل -->
 
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
@@ -20,885 +20,357 @@
   </script> -->
 
   <style>
-    /* ===== VARIABLES ===== */
     :root {
-      --black: #0f0f0f;
+      --black: #111111;
       --white: #ffffff;
-      --yellow: #f5c518;
-      --yellow-light: #fde97a;
-      --purple: #6b21a8;
-      --purple-light: #a855f7;
-      --purple-dark: #3b0764;
-      --gray: #f4f4f0;
-      --gray-mid: #e0e0d8;
-      --text-muted: #6b6b6b;
+      --off-white: #f9f8f5;
+      --yellow: #f0b429;
+      --yellow-pale: #fef9ec;
+      --gray-light: #f0efe9;
+      --gray-mid: #e2e0d8;
+      --gray-dark: #6b6b6b;
+      --border: #e0ddd4;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'Cairo', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
 
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: var(--white);
-      color: var(--black);
-      overflow-x: hidden;
-    }
-
-    /* ===== ANNOUNCEMENT BAR ===== */
+    /* ANNOUNCEMENT */
     .announcement-bar {
-      background: var(--purple-dark);
-      color: var(--yellow);
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      position: relative;
-      overflow: hidden;
+      background: var(--black); color: var(--yellow);
+      text-align: center; padding: 9px 20px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.3px;
     }
-    .announcement-bar::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(245,197,24,0.05) 40px, rgba(245,197,24,0.05) 80px);
-    }
-    .announcement-bar span { position: relative; }
 
-    /* ===== HEADER ===== */
+    /* HEADER */
     .header {
-      background: var(--black);
-      padding: 0 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 72px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 2px solid var(--yellow);
+      background: var(--white); padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 80px; position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
     }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 2px;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .logo-star {
-      color: var(--yellow);
-      font-size: 22px;
-      animation: spin-star 6s linear infinite;
-    }
-    @keyframes spin-star {
-      0%,100% { transform: rotate(0deg) scale(1); }
-      50% { transform: rotate(180deg) scale(1.2); }
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
+    .logo-img { height: 52px; width: auto; object-fit: contain; }
     .header-wa-btn {
-      background: var(--yellow);
-      color: var(--black);
-      border: none;
-      padding: 9px 20px;
-      border-radius: 6px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
+      background: var(--black); color: var(--white); border: none;
+      padding: 10px 22px; border-radius: 6px;
+      font-family: 'Cairo', sans-serif; font-size: 13px; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; gap: 8px; transition: all 0.2s;
     }
-    .header-wa-btn:hover {
-      background: var(--yellow-light);
-      transform: translateY(-1px);
-    }
+    .header-wa-btn:hover { background: var(--yellow); color: var(--black); }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero {
-      background: var(--black);
-      min-height: 520px;
-      display: flex;
-      align-items: center;
-      padding: 60px 40px;
-      position: relative;
-      overflow: hidden;
+      background: var(--black); min-height: 480px;
+      display: flex; align-items: center; padding: 72px 48px;
+      position: relative; overflow: hidden;
     }
+    .hero-dots {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 32px 32px; pointer-events: none;
+    }
+    .hero-glow {
+      position: absolute; bottom: -100px; left: -100px;
+      width: 400px; height: 400px; background: var(--yellow);
+      border-radius: 50%; opacity: 0.05; pointer-events: none;
+    }
+    .hero-logo-bg {
+      position: absolute; left: 6%; top: 50%; transform: translateY(-50%);
+      width: 260px; opacity: 0.06; filter: invert(1); pointer-events: none;
+    }
+    .hero-content { position: relative; max-width: 560px; animation: fadeUp 0.7s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
 
-    .hero-bg-pattern {
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 80% 50%, rgba(107,33,168,0.4) 0%, transparent 60%),
-        radial-gradient(circle at 20% 80%, rgba(245,197,24,0.15) 0%, transparent 50%);
-      pointer-events: none;
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(240,180,41,0.12); border: 1px solid rgba(240,180,41,0.3);
+      color: var(--yellow); padding: 5px 14px; border-radius: 20px;
+      font-size: 12px; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.5px;
     }
-
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(245,197,24,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(245,197,24,0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      max-width: 600px;
-      animation: fadeUp 0.8s ease both;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(245,197,24,0.15);
-      border: 1px solid rgba(245,197,24,0.4);
-      color: var(--yellow);
-      padding: 6px 16px;
-      border-radius: 30px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 24px;
-      letter-spacing: 1px;
-    }
-
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(38px, 5vw, 64px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.15;
-      margin-bottom: 20px;
+      font-size: clamp(36px, 5vw, 58px); font-weight: 900;
+      color: var(--white); line-height: 1.18; margin-bottom: 18px;
     }
-    .hero h1 .accent {
-      color: var(--yellow);
-      display: block;
-    }
-
+    .hero h1 .accent { color: var(--yellow); }
     .hero p {
-      color: rgba(255,255,255,0.65);
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 1.7;
-      margin-bottom: 36px;
-      max-width: 440px;
+      color: rgba(255,255,255,0.5); font-size: 16px; font-weight: 300;
+      line-height: 1.75; margin-bottom: 36px; max-width: 420px;
     }
-
-    .hero-btns {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 
     .btn-primary {
-      background: var(--yellow);
-      color: var(--black);
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.25s;
-      border: 2px solid var(--yellow);
+      background: var(--yellow); color: var(--black);
+      padding: 13px 26px; border-radius: 7px;
+      font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 700;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.22s; border: 2px solid var(--yellow);
     }
-    .btn-primary:hover {
-      background: var(--yellow-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(245,197,24,0.4);
+    .btn-primary:hover { background: #e0a820; border-color: #e0a820; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: rgba(255,255,255,0.75);
+      padding: 13px 26px; border-radius: 7px;
+      font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 600;
+      text-decoration: none; border: 2px solid rgba(255,255,255,0.18); transition: all 0.22s;
     }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.45); color: var(--white); }
 
-    .btn-secondary {
-      background: transparent;
-      color: var(--white);
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      border: 2px solid rgba(255,255,255,0.25);
-      transition: all 0.25s;
-    }
-    .btn-secondary:hover {
-      border-color: var(--white);
-      background: rgba(255,255,255,0.08);
-    }
-
-    /* Hero floating shapes */
-    .hero-shape {
-      position: absolute;
-      right: 8%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 320px;
-      height: 320px;
-      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      opacity: 0.6;
-      animation: morph 8s ease-in-out infinite;
-    }
-    .hero-shape-2 {
-      position: absolute;
-      right: 12%;
-      top: 55%;
-      transform: translateY(-50%);
-      width: 200px;
-      height: 200px;
-      background: var(--yellow);
-      border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%;
-      opacity: 0.15;
-      animation: morph 6s ease-in-out infinite reverse;
-    }
-    @keyframes morph {
-      0%,100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-      50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-    }
-
-    /* ===== TRUST BAR ===== */
+    /* TRUST BAR */
     .trust-bar {
-      background: var(--yellow);
-      padding: 16px 40px;
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      flex-wrap: wrap;
+      background: var(--yellow-pale); border-bottom: 1px solid var(--border);
+      padding: 14px 48px; display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
     }
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--black);
-    }
-    .trust-icon {
-      font-size: 18px;
-    }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--black); }
 
-    /* ===== SALE SECTION ===== */
-    .section-header {
-      text-align: center;
-      padding: 60px 40px 32px;
-    }
+    /* SECTION HEADER */
+    .section-header { text-align: center; padding: 64px 48px 32px; }
     .section-tag {
-      display: inline-block;
-      background: var(--purple);
-      color: var(--white);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      padding: 5px 14px;
-      border-radius: 20px;
-      margin-bottom: 14px;
-      text-transform: uppercase;
+      display: inline-block; background: var(--yellow); color: var(--black);
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      padding: 4px 14px; border-radius: 20px; margin-bottom: 14px; text-transform: uppercase;
     }
-    .section-tag.yellow {
-      background: var(--yellow);
-      color: var(--black);
-    }
+    .section-tag.dark { background: var(--black); color: var(--white); }
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 900;
-      color: var(--black);
-      line-height: 1.2;
+      font-size: clamp(26px, 3.5vw, 40px); font-weight: 900; color: var(--black); line-height: 1.2;
     }
-    .section-title .highlight {
-      color: var(--purple);
-    }
+    .section-title .accent { color: var(--yellow); }
 
-    /* ===== SALE BANNER ===== */
+    /* SALE SECTION */
     .sale-section {
-      background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%);
-      margin: 0 40px 60px;
-      border-radius: 20px;
-      padding: 48px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      flex-wrap: wrap;
-      position: relative;
-      overflow: hidden;
+      margin: 0 48px 64px; border-radius: 16px; background: var(--black);
+      padding: 48px 52px; display: flex; align-items: center;
+      justify-content: space-between; gap: 32px; flex-wrap: wrap;
+      position: relative; overflow: hidden;
     }
     .sale-section::before {
-      content: '';
-      position: absolute;
-      top: -50px; right: -50px;
-      width: 200px; height: 200px;
-      background: rgba(245,197,24,0.15);
-      border-radius: 50%;
-    }
-    .sale-section::after {
-      content: '';
-      position: absolute;
-      bottom: -80px; left: 20%;
-      width: 300px; height: 300px;
-      background: rgba(245,197,24,0.08);
-      border-radius: 50%;
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 280px; height: 280px; background: var(--yellow);
+      border-radius: 50%; opacity: 0.04; pointer-events: none;
     }
     .sale-content { position: relative; flex: 1; min-width: 240px; }
     .sale-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--yellow);
-      color: var(--black);
-      font-size: 12px;
-      font-weight: 800;
-      padding: 6px 16px;
-      border-radius: 30px;
-      margin-bottom: 18px;
-      letter-spacing: 1px;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--yellow); color: var(--black);
+      font-size: 11px; font-weight: 800; padding: 5px 14px;
+      border-radius: 20px; margin-bottom: 18px; letter-spacing: 0.5px;
     }
     .sale-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 3.5vw, 40px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 12px;
+      font-size: clamp(22px, 3vw, 34px); font-weight: 900;
+      color: var(--white); line-height: 1.25; margin-bottom: 12px;
     }
     .sale-title span { color: var(--yellow); }
-    .sale-desc {
-      color: rgba(255,255,255,0.75);
-      font-size: 15px;
-      font-weight: 300;
-      margin-bottom: 28px;
-    }
+    .sale-desc { color: rgba(255,255,255,0.45); font-size: 14px; font-weight: 300; margin-bottom: 28px; }
     .sale-btn {
-      background: var(--yellow);
-      color: var(--black);
-      padding: 13px 28px;
-      border-radius: 8px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
+      background: var(--yellow); color: var(--black);
+      padding: 12px 26px; border-radius: 7px;
+      font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 700;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s;
     }
-    .sale-btn:hover {
-      background: var(--yellow-light);
-      transform: translateY(-2px);
-    }
-    .sale-cards {
-      display: flex;
-      gap: 16px;
-      position: relative;
-      flex-wrap: wrap;
-    }
+    .sale-btn:hover { background: #e0a820; transform: translateY(-2px); }
+    .sale-cards { display: flex; gap: 14px; position: relative; flex-wrap: wrap; }
     .sale-mini-card {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 14px;
-      padding: 20px;
-      text-align: center;
-      min-width: 110px;
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+      padding: 20px 24px; text-align: center; min-width: 110px;
     }
-    .sale-mini-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      font-weight: 900;
-      color: var(--yellow);
-      line-height: 1;
-    }
-    .sale-mini-label {
-      font-size: 12px;
-      color: rgba(255,255,255,0.7);
-      margin-top: 6px;
-      font-weight: 600;
-    }
+    .sale-mini-num { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: var(--yellow); line-height: 1; }
+    .sale-mini-label { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 6px; font-weight: 600; }
 
-    /* ===== FILTER BAR ===== */
-    .filter-bar {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      padding: 0 40px 40px;
-      flex-wrap: wrap;
-    }
+    /* FILTER */
+    .filter-bar { display: flex; justify-content: center; gap: 10px; padding: 0 48px 40px; flex-wrap: wrap; }
     .filter-btn {
-      background: var(--gray);
-      border: 2px solid transparent;
-      color: var(--black);
-      padding: 10px 24px;
-      border-radius: 30px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
+      background: var(--white); border: 1.5px solid var(--border); color: var(--gray-dark);
+      padding: 9px 22px; border-radius: 30px;
+      font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
     }
-    .filter-btn:hover {
-      border-color: var(--purple);
-      color: var(--purple);
-    }
-    .filter-btn.active {
-      background: var(--purple);
-      color: var(--white);
-      border-color: var(--purple);
-    }
+    .filter-btn:hover { border-color: var(--black); color: var(--black); }
+    .filter-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
 
-    /* ===== PRODUCTS GRID ===== */
-    .products-section { padding: 0 40px 80px; }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 24px;
-    }
+    /* PRODUCTS */
+    .products-section { padding: 0 48px 80px; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; }
 
     .product-card {
-      background: var(--white);
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1.5px solid var(--gray-mid);
-      transition: all 0.3s;
-      position: relative;
-      animation: fadeUp 0.5s ease both;
+      background: var(--white); border-radius: 12px; overflow: hidden;
+      border: 1.5px solid var(--border); transition: all 0.25s; position: relative;
     }
-    .product-card:hover {
-      border-color: var(--purple-light);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(107,33,168,0.15);
-    }
+    .product-card:hover { border-color: var(--black); transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.09); }
     .product-card.hidden { display: none; }
 
     .product-img-wrap {
-      position: relative;
-      overflow: hidden;
-      background: var(--gray);
-      aspect-ratio: 1;
-      cursor: pointer;
+      position: relative; overflow: hidden; background: var(--gray-light);
+      aspect-ratio: 1; cursor: pointer;
     }
-    .product-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .product-card:hover .product-img-wrap img {
-      transform: scale(1.06);
-    }
+    .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease; }
+    .product-card:hover .product-img-wrap img { transform: scale(1.05); }
 
     .product-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s;
+      position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.25s;
     }
     .product-card:hover .product-overlay { opacity: 1; }
     .overlay-btn {
-      background: var(--white);
-      color: var(--black);
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
+      background: var(--white); color: var(--black); border: none;
+      padding: 9px 18px; border-radius: 6px;
+      font-family: 'Cairo', sans-serif; font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
     }
-    .overlay-btn:hover {
-      background: var(--yellow);
-    }
+    .overlay-btn:hover { background: var(--yellow); }
 
     .product-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--purple);
-      color: var(--white);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
+      position: absolute; top: 10px; right: 10px;
+      background: var(--black); color: var(--white);
+      font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 4px; letter-spacing: 0.5px;
     }
-    .product-badge.sale {
-      background: #dc2626;
-    }
+    .product-badge.hot { background: var(--yellow); color: var(--black); }
 
-    .product-info {
-      padding: 18px;
-    }
-    .product-category {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--purple);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .product-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--black);
-      margin-bottom: 14px;
-      line-height: 1.4;
-    }
-
-    .product-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .product-info { padding: 16px; }
+    .product-category { font-size: 10px; font-weight: 700; color: var(--gray-dark); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; }
+    .product-name { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 14px; line-height: 1.4; }
+    .product-actions { display: flex; flex-direction: column; gap: 7px; }
 
     .btn-wa {
-      background: #25d366;
-      color: var(--white);
-      border: none;
-      padding: 11px 16px;
-      border-radius: 8px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s;
+      background: #22c55e; color: var(--white); border: none; padding: 10px 14px; border-radius: 7px;
+      font-family: 'Cairo', sans-serif; font-size: 13px; font-weight: 700;
+      cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 7px; transition: all 0.2s;
     }
-    .btn-wa:hover {
-      background: #1da851;
-      transform: translateY(-1px);
-    }
-
+    .btn-wa:hover { background: #16a34a; transform: translateY(-1px); }
     .btn-price {
-      background: var(--gray);
-      color: var(--black);
-      border: none;
-      padding: 9px 16px;
-      border-radius: 8px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s;
+      background: var(--gray-light); color: var(--black); border: none; padding: 9px 14px; border-radius: 7px;
+      font-family: 'Cairo', sans-serif; font-size: 13px; font-weight: 600;
+      cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 7px; transition: all 0.2s;
     }
-    .btn-price:hover {
-      background: var(--gray-mid);
-    }
+    .btn-price:hover { background: var(--gray-mid); }
 
-    /* ===== SOCIAL ===== */
-    .social-section {
-      background: var(--black);
-      padding: 60px 40px;
-      text-align: center;
-    }
-    .social-section .section-title { color: var(--white); margin-bottom: 32px; }
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+    /* SOCIAL */
+    .social-section { background: var(--off-white); border-top: 1px solid var(--border); padding: 64px 48px; text-align: center; }
+    .social-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
     .social-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 28px;
-      border-radius: 10px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.25s;
-      border: 2px solid transparent;
+      display: flex; align-items: center; gap: 9px; padding: 11px 24px; border-radius: 8px;
+      font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 700;
+      text-decoration: none; transition: all 0.22s;
     }
-    .social-link.fb {
-      background: #1877f2;
-      color: var(--white);
-    }
-    .social-link.fb:hover {
-      background: #1459b8;
-      transform: translateY(-2px);
-    }
-    .social-link.ig {
-      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      color: var(--white);
-    }
-    .social-link.ig:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-    }
+    .social-link.fb { background: #1877f2; color: var(--white); }
+    .social-link.fb:hover { background: #1459b8; transform: translateY(-2px); }
+    .social-link.ig { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: var(--white); }
+    .social-link.ig:hover { opacity: 0.88; transform: translateY(-2px); }
 
-    /* ===== ABOUT ===== */
+    /* ABOUT */
     .about-section {
-      background: var(--gray);
-      padding: 80px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 60px;
-      flex-wrap: wrap;
+      background: var(--white); border-top: 1px solid var(--border);
+      padding: 80px 48px; display: flex; align-items: center;
+      justify-content: center; gap: 72px; flex-wrap: wrap;
     }
-    .about-content { max-width: 500px; }
-    .about-content .section-tag { margin-bottom: 16px; }
-    .about-content .section-title { text-align: right; margin-bottom: 18px; }
-    .about-content p {
-      color: var(--text-muted);
-      font-size: 16px;
-      line-height: 1.8;
-      font-weight: 400;
-    }
-    .about-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .stat-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 24px 32px;
-      text-align: center;
-      border: 2px solid var(--gray-mid);
-      min-width: 140px;
-    }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 40px;
-      font-weight: 900;
-      color: var(--purple);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 6px;
-      font-weight: 600;
-    }
+    .about-logo { width: 180px; }
+    .about-content { max-width: 460px; }
+    .about-content .section-title { text-align: right; margin-bottom: 16px; }
+    .about-content p { color: var(--gray-dark); font-size: 15px; line-height: 1.85; font-weight: 400; }
+    .about-stats { display: flex; gap: 16px; margin-top: 28px; flex-wrap: wrap; }
+    .stat-card { border: 1.5px solid var(--border); border-radius: 10px; padding: 18px 24px; text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--black); line-height: 1; }
+    .stat-num span { color: var(--yellow); }
+    .stat-label { font-size: 12px; color: var(--gray-dark); margin-top: 5px; font-weight: 600; }
 
-    /* ===== FOOTER ===== */
+    /* FOOTER */
     .footer {
-      background: var(--black);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 32px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      background: var(--black); padding: 28px 48px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
     }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .footer-logo span { color: var(--yellow); }
-    .footer-copy {
-      color: rgba(255,255,255,0.4);
-      font-size: 13px;
-    }
+    .footer-logo { height: 36px; filter: brightness(0) invert(1); opacity: 0.8; }
+    .footer-copy { color: rgba(255,255,255,0.3); font-size: 13px; }
 
-    /* ===== POPUP ===== */
+    /* POPUP */
     .popup-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.9);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      backdrop-filter: blur(8px);
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.82);
+      z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(6px);
     }
     .popup-overlay.open { display: flex; }
     .popup-inner {
-      position: relative;
-      max-width: 600px;
-      width: 100%;
-      background: var(--white);
-      border-radius: 20px;
-      overflow: hidden;
-      animation: popIn 0.3s ease;
+      position: relative; max-width: 560px; width: 100%;
+      background: var(--white); border-radius: 14px; overflow: hidden; animation: popIn 0.28s ease;
     }
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.92); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .popup-inner img {
-      width: 100%;
-      max-height: 70vh;
-      object-fit: cover;
-      display: block;
-    }
+    @keyframes popIn { from { opacity:0; transform:scale(0.93); } to { opacity:1; transform:scale(1); } }
+    .popup-inner img { width: 100%; max-height: 68vh; object-fit: cover; display: block; }
     .popup-close {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      width: 36px;
-      height: 36px;
-      background: var(--black);
-      color: var(--white);
-      border: none;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
+      position: absolute; top: 12px; left: 12px; width: 34px; height: 34px;
+      background: var(--black); color: var(--white); border: none; border-radius: 50%;
+      font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;
     }
-    .popup-close:hover { background: var(--purple); }
-    .popup-product-name {
-      padding: 20px 24px;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--black);
-      border-top: 1px solid var(--gray-mid);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+    .popup-close:hover { background: var(--yellow); color: var(--black); }
+    .popup-footer {
+      padding: 18px 20px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
     }
+    .popup-name { font-size: 16px; font-weight: 700; color: var(--black); }
     .popup-wa-btn {
-      background: #25d366;
-      color: var(--white);
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      transition: background 0.2s;
+      background: #22c55e; color: var(--white); border: none; padding: 9px 18px; border-radius: 7px;
+      font-family: 'Cairo', sans-serif; font-size: 13px; font-weight: 700;
+      cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 7px; white-space: nowrap; transition: background 0.2s;
     }
-    .popup-wa-btn:hover { background: #1da851; }
+    .popup-wa-btn:hover { background: #16a34a; }
 
-    /* ===== RESPONSIVE ===== */
+    .wa-svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .header { padding: 0 20px; height: 64px; }
-      .hero { padding: 48px 20px; min-height: 400px; }
-      .hero-shape, .hero-shape-2 { display: none; }
+      .header { padding: 0 20px; height: 68px; }
+      .logo-img { height: 44px; }
+      .hero { padding: 52px 20px; }
+      .hero-logo-bg { display: none; }
+      .trust-bar { padding: 12px 20px; gap: 20px; }
       .sale-section { margin: 0 20px 48px; padding: 32px 24px; }
       .filter-bar { padding: 0 20px 32px; }
       .products-section { padding: 0 20px 60px; }
-      .trust-bar { gap: 24px; padding: 14px 20px; }
+      .section-header { padding: 48px 20px 24px; }
+      .social-section { padding: 52px 20px; }
       .about-section { padding: 60px 20px; }
       .footer { padding: 24px 20px; }
-      .social-section { padding: 48px 20px; }
-      .section-header { padding: 48px 20px 24px; }
     }
-
-    /* ===== WA SVG ===== */
-    .wa-svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
   </style>
 
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BAR -->
-
-<div class="announcement-bar">
-  <span>🎉 شحن مجاني على كل الطلبات فوق 200 جنيه — تواصل معنا على واتساب!</span>
-</div>
-
-<!-- HEADER -->
+<div class="announcement-bar">✦ شحن مجاني على الطلبات فوق 200 جنيه — تواصل معنا على واتساب</div>
 
 <header class="header">
-  <a class="logo" href="#">
-    <span class="logo-star">✦</span>
-    CANOPUS
+  <img class="logo-img" src="logo.jpg" alt="Canopus Notebooks">
+  <a class="header-wa-btn" target="_blank" href="https://wa.me/201004782276?text=مرحباً%20Canopus%20-%20عايز%20استفسر%20عن%20المنتجات">
+    <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
+    اطلب الآن
   </a>
-  <div class="header-actions">
-    <a class="header-wa-btn" target="_blank"
-       href="https://wa.me/201004782276?text=مرحباً%20Canopus%20-%20عايز%20استفسر%20عن%20المنتجات">
-      <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-      اطلب الآن
-    </a>
-  </div>
 </header>
 
-<!-- HERO -->
-
 <section class="hero">
-  <div class="hero-bg-pattern"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-shape"></div>
-  <div class="hero-shape-2"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <img class="hero-logo-bg" src="logo.jpg" alt="">
   <div class="hero-content">
-    <div class="hero-badge">✦ براند مصري أصيل</div>
-    <h1>
-      اكتب أفكارك
-      <span class="accent">بطريقتك الخاصة</span>
-    </h1>
+    <div class="hero-tag">✦ براند مصري أصيل</div>
+    <h1>اكتب أفكارك<br><span class="accent">بطريقتك الخاصة</span></h1>
     <p>نوت بوك وستيكرز بجودة استثنائية — صنع بالإيد بحب وعناية لكل من يقدّر التفاصيل</p>
     <div class="hero-btns">
-      <a class="btn-primary" href="#products">
-        تصفح المنتجات ↓
-      </a>
-      <a class="btn-secondary" target="_blank"
-         href="https://wa.me/201004782276?text=مرحباً%20Canopus%20-%20عايز%20استفسر%20عن%20المنتجات">
-        تواصل معنا
-      </a>
+      <a class="btn-primary" href="#products">تصفح المنتجات ↓</a>
+      <a class="btn-outline" target="_blank" href="https://wa.me/201004782276?text=مرحباً%20Canopus%20-%20عايز%20استفسر%20عن%20المنتجات">تواصل معنا</a>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
-
 <div class="trust-bar">
-  <div class="trust-item"><span class="trust-icon">✦</span> صنع بالإيد</div>
-  <div class="trust-item"><span class="trust-icon">📦</span> توصيل سريع</div>
-  <div class="trust-item"><span class="trust-icon">💬</span> دعم على واتساب</div>
-  <div class="trust-item"><span class="trust-icon">⭐</span> جودة مضمونة</div>
+  <div class="trust-item">✦ صنع بالإيد</div>
+  <div class="trust-item">📦 توصيل سريع</div>
+  <div class="trust-item">💬 دعم على واتساب</div>
+  <div class="trust-item">⭐ جودة مضمونة</div>
 </div>
 
-<!-- SALE SECTION -->
-
 <div class="section-header">
-  <div class="section-tag">🔥 عروض محدودة</div>
-  <h2 class="section-title">خصومات و<span class="highlight">عروض خاصة</span></h2>
+  <div class="section-tag dark">🔥 عروض محدودة</div>
+  <h2 class="section-title">خصومات و<span class="accent">عروض خاصة</span></h2>
 </div>
 
 <div class="sale-section">
@@ -906,32 +378,21 @@
     <div class="sale-badge">✦ عرض مميز</div>
     <h2 class="sale-title">اشتري 2 نوتبوك<br><span>وادفع تمن واحد بس!</span></h2>
     <p class="sale-desc">عرض محدود — تواصل معنا على واتساب لتفعيل الخصم قبل ما ينتهي</p>
-    <a class="sale-btn" target="_blank"
-       href="https://wa.me/201004782276?text=عايز%20أستفيد%20من%20عرض%20اشتري%202%20وادفع%20تمن%20واحد">
+    <a class="sale-btn" target="_blank" href="https://wa.me/201004782276?text=عايز%20أستفيد%20من%20عرض%20اشتري%202%20وادفع%20تمن%20واحد">
       <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
       احجز العرض دلوقتي
     </a>
   </div>
   <div class="sale-cards">
-    <div class="sale-mini-card">
-      <div class="sale-mini-num">50%</div>
-      <div class="sale-mini-label">خصم على الثاني</div>
-    </div>
-    <div class="sale-mini-card">
-      <div class="sale-mini-num">10+</div>
-      <div class="sale-mini-label">منتج متاح</div>
-    </div>
+    <div class="sale-mini-card"><div class="sale-mini-num">50%</div><div class="sale-mini-label">خصم على الثاني</div></div>
+    <div class="sale-mini-card"><div class="sale-mini-num">10+</div><div class="sale-mini-label">منتج متاح</div></div>
   </div>
 </div>
 
-<!-- PRODUCTS -->
-
 <div class="section-header" id="products">
-  <div class="section-tag yellow">✦ كل المنتجات</div>
-  <h2 class="section-title">تصفح <span class="highlight">مجموعتنا</span></h2>
+  <div class="section-tag">✦ المنتجات</div>
+  <h2 class="section-title">تصفح <span class="accent">مجموعتنا</span></h2>
 </div>
-
-<!-- FILTER -->
 
 <div class="filter-bar">
   <button class="filter-btn active" data-filter="all">الكل</button>
@@ -939,362 +400,122 @@
   <button class="filter-btn" data-filter="sticker">ستيكرز 🏷️</button>
 </div>
 
-<!-- PRODUCTS GRID -->
-
 <div class="products-section">
-  <div class="products-grid" id="productsGrid">
+  <div class="products-grid">
 
 ```
 <div class="product-card" data-category="notebook">
-  <div class="product-img-wrap">
-    <img src="p1.jpg" alt="نوتبوك البت النايمة A5" data-name="نوتبوك البت النايمة A5">
-    <div class="product-overlay">
-      <button class="overlay-btn" onclick="openPopup('p1.jpg','نوتبوك البت النايمة A5')">عرض الصورة</button>
-    </div>
-    <span class="product-badge">جديد</span>
-  </div>
-  <div class="product-info">
-    <div class="product-category">نوت بوك · A5</div>
-    <div class="product-name">نوتبوك البت النايمة</div>
-    <div class="product-actions">
-      <a class="btn-wa" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أطلب%20نوتبوك%20البت%20النايمة%20A5">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
-      <a class="btn-price" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20نوتبوك%20البت%20النايمة%20A5">
-        اسأل عن السعر
-      </a>
-    </div>
-  </div>
+  <div class="product-img-wrap"><img src="p1.jpg" alt="نوتبوك البت النايمة A5"><div class="product-overlay"><button class="overlay-btn" onclick="openPopup('p1.jpg','نوتبوك البت النايمة A5')">عرض الصورة</button></div><span class="product-badge">جديد</span></div>
+  <div class="product-info"><div class="product-category">نوت بوك · A5</div><div class="product-name">نوتبوك البت النايمة</div><div class="product-actions"><a class="btn-wa" target="_blank" href="https://wa.me/201004782276?text=عايز%20أطلب%20نوتبوك%20البت%20النايمة%20A5"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a><a class="btn-price" target="_blank" href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20نوتبوك%20البت%20النايمة%20A5">اسأل عن السعر</a></div></div>
 </div>
 
 <div class="product-card" data-category="notebook">
-  <div class="product-img-wrap">
-    <img src="p2.jpg" alt="نوتبوك البت ام وردة A5" data-name="نوتبوك البت ام وردة A5">
-    <div class="product-overlay">
-      <button class="overlay-btn" onclick="openPopup('p2.jpg','نوتبوك البت ام وردة A5')">عرض الصورة</button>
-    </div>
-  </div>
-  <div class="product-info">
-    <div class="product-category">نوت بوك · A5</div>
-    <div class="product-name">نوتبوك البت ام وردة</div>
-    <div class="product-actions">
-      <a class="btn-wa" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أطلب%20نوتبوك%20البت%20ام%20وردة%20A5">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
-      <a class="btn-price" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20نوتبوك%20البت%20ام%20وردة%20A5">
-        اسأل عن السعر
-      </a>
-    </div>
-  </div>
+  <div class="product-img-wrap"><img src="p2.jpg" alt="نوتبوك البت ام وردة A5"><div class="product-overlay"><button class="overlay-btn" onclick="openPopup('p2.jpg','نوتبوك البت ام وردة A5')">عرض الصورة</button></div></div>
+  <div class="product-info"><div class="product-category">نوت بوك · A5</div><div class="product-name">نوتبوك البت ام وردة</div><div class="product-actions"><a class="btn-wa" target="_blank" href="https://wa.me/201004782276?text=عايز%20أطلب%20نوتبوك%20البت%20ام%20وردة%20A5"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a><a class="btn-price" target="_blank" href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20نوتبوك%20البت%20ام%20وردة%20A5">اسأل عن السعر</a></div></div>
 </div>
 
 <div class="product-card" data-category="notebook">
-  <div class="product-img-wrap">
-    <img src="p3.jpg" alt="نوتبوك تركيا A5" data-name="نوتبوك تركيا A5">
-    <div class="product-overlay">
-      <button class="overlay-btn" onclick="openPopup('p3.jpg','نوتبوك تركيا A5')">عرض الصورة</button>
-    </div>
-    <span class="product-badge sale">الأكثر مبيعاً</span>
-  </div>
-  <div class="product-info">
-    <div class="product-category">نوت بوك · A5</div>
-    <div class="product-name">نوتبوك تركيا</div>
-    <div class="product-actions">
-      <a class="btn-wa" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أطلب%20نوتبوك%20تركيا%20A5">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
-      <a class="btn-price" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20نوتبوك%20تركيا%20A5">
-        اسأل عن السعر
-      </a>
-    </div>
-  </div>
+  <div class="product-img-wrap"><img src="p3.jpg" alt="نوتبوك تركيا A5"><div class="product-overlay"><button class="overlay-btn" onclick="openPopup('p3.jpg','نوتبوك تركيا A5')">عرض الصورة</button></div><span class="product-badge hot">الأكثر مبيعاً</span></div>
+  <div class="product-info"><div class="product-category">نوت بوك · A5</div><div class="product-name">نوتبوك تركيا</div><div class="product-actions"><a class="btn-wa" target="_blank" href="https://wa.me/201004782276?text=عايز%20أطلب%20نوتبوك%20تركيا%20A5"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a><a class="btn-price" target="_blank" href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20نوتبوك%20تركيا%20A5">اسأل عن السعر</a></div></div>
 </div>
 
 <div class="product-card" data-category="notebook">
-  <div class="product-img-wrap">
-    <img src="p4.jpg" alt="نوت بوك A6" data-name="نوت بوك A6">
-    <div class="product-overlay">
-      <button class="overlay-btn" onclick="openPopup('p4.jpg','نوت بوك A6')">عرض الصورة</button>
-    </div>
-  </div>
-  <div class="product-info">
-    <div class="product-category">نوت بوك · A6</div>
-    <div class="product-name">نوت بوك A6</div>
-    <div class="product-actions">
-      <a class="btn-wa" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أطلب%20نوت%20بوك%20A6">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
-      <a class="btn-price" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20نوت%20بوك%20A6">
-        اسأل عن السعر
-      </a>
-    </div>
-  </div>
+  <div class="product-img-wrap"><img src="p4.jpg" alt="نوت بوك A6"><div class="product-overlay"><button class="overlay-btn" onclick="openPopup('p4.jpg','نوت بوك A6')">عرض الصورة</button></div></div>
+  <div class="product-info"><div class="product-category">نوت بوك · A6</div><div class="product-name">نوت بوك A6</div><div class="product-actions"><a class="btn-wa" target="_blank" href="https://wa.me/201004782276?text=عايز%20أطلب%20نوت%20بوك%20A6"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a><a class="btn-price" target="_blank" href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20نوت%20بوك%20A6">اسأل عن السعر</a></div></div>
 </div>
 
 <div class="product-card" data-category="sticker">
-  <div class="product-img-wrap">
-    <img src="p5.jpg" alt="Travel sticker" data-name="Travel sticker">
-    <div class="product-overlay">
-      <button class="overlay-btn" onclick="openPopup('p5.jpg','Travel sticker')">عرض الصورة</button>
-    </div>
-  </div>
-  <div class="product-info">
-    <div class="product-category">ستيكر</div>
-    <div class="product-name">Travel Sticker</div>
-    <div class="product-actions">
-      <a class="btn-wa" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أطلب%20Travel%20sticker">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
-      <a class="btn-price" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Travel%20sticker">
-        اسأل عن السعر
-      </a>
-    </div>
-  </div>
+  <div class="product-img-wrap"><img src="p5.jpg" alt="Travel sticker"><div class="product-overlay"><button class="overlay-btn" onclick="openPopup('p5.jpg','Travel sticker')">عرض الصورة</button></div></div>
+  <div class="product-info"><div class="product-category">ستيكر</div><div class="product-name">Travel Sticker</div><div class="product-actions"><a class="btn-wa" target="_blank" href="https://wa.me/201004782276?text=عايز%20أطلب%20Travel%20sticker"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a><a class="btn-price" target="_blank" href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Travel%20sticker">اسأل عن السعر</a></div></div>
 </div>
 
 <div class="product-card" data-category="sticker">
-  <div class="product-img-wrap">
-    <img src="p6.jpg" alt="Girls sticker" data-name="Girls sticker">
-    <div class="product-overlay">
-      <button class="overlay-btn" onclick="openPopup('p6.jpg','Girls sticker')">عرض الصورة</button>
-    </div>
-  </div>
-  <div class="product-info">
-    <div class="product-category">ستيكر</div>
-    <div class="product-name">Girls Sticker</div>
-    <div class="product-actions">
-      <a class="btn-wa" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أطلب%20Girls%20sticker">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
-      <a class="btn-price" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Girls%20sticker">
-        اسأل عن السعر
-      </a>
-    </div>
-  </div>
+  <div class="product-img-wrap"><img src="p6.jpg" alt="Girls sticker"><div class="product-overlay"><button class="overlay-btn" onclick="openPopup('p6.jpg','Girls sticker')">عرض الصورة</button></div></div>
+  <div class="product-info"><div class="product-category">ستيكر</div><div class="product-name">Girls Sticker</div><div class="product-actions"><a class="btn-wa" target="_blank" href="https://wa.me/201004782276?text=عايز%20أطلب%20Girls%20sticker"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a><a class="btn-price" target="_blank" href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Girls%20sticker">اسأل عن السعر</a></div></div>
 </div>
 
 <div class="product-card" data-category="sticker">
-  <div class="product-img-wrap">
-    <img src="p7.jpg" alt="Go on sticker" data-name="Go on sticker">
-    <div class="product-overlay">
-      <button class="overlay-btn" onclick="openPopup('p7.jpg','Go on sticker')">عرض الصورة</button>
-    </div>
-  </div>
-  <div class="product-info">
-    <div class="product-category">ستيكر</div>
-    <div class="product-name">Go On Sticker</div>
-    <div class="product-actions">
-      <a class="btn-wa" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أطلب%20Go%20on%20sticker">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
-      <a class="btn-price" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Go%20on%20sticker">
-        اسأل عن السعر
-      </a>
-    </div>
-  </div>
+  <div class="product-img-wrap"><img src="p7.jpg" alt="Go on sticker"><div class="product-overlay"><button class="overlay-btn" onclick="openPopup('p7.jpg','Go on sticker')">عرض الصورة</button></div></div>
+  <div class="product-info"><div class="product-category">ستيكر</div><div class="product-name">Go On Sticker</div><div class="product-actions"><a class="btn-wa" target="_blank" href="https://wa.me/201004782276?text=عايز%20أطلب%20Go%20on%20sticker"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a><a class="btn-price" target="_blank" href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Go%20on%20sticker">اسأل عن السعر</a></div></div>
 </div>
 
 <div class="product-card" data-category="sticker">
-  <div class="product-img-wrap">
-    <img src="p8.jpg" alt="Kind sticker" data-name="Kind sticker">
-    <div class="product-overlay">
-      <button class="overlay-btn" onclick="openPopup('p8.jpg','Kind sticker')">عرض الصورة</button>
-    </div>
-  </div>
-  <div class="product-info">
-    <div class="product-category">ستيكر</div>
-    <div class="product-name">Kind Sticker</div>
-    <div class="product-actions">
-      <a class="btn-wa" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أطلب%20Kind%20sticker">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
-      <a class="btn-price" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Kind%20sticker">
-        اسأل عن السعر
-      </a>
-    </div>
-  </div>
+  <div class="product-img-wrap"><img src="p8.jpg" alt="Kind sticker"><div class="product-overlay"><button class="overlay-btn" onclick="openPopup('p8.jpg','Kind sticker')">عرض الصورة</button></div></div>
+  <div class="product-info"><div class="product-category">ستيكر</div><div class="product-name">Kind Sticker</div><div class="product-actions"><a class="btn-wa" target="_blank" href="https://wa.me/201004782276?text=عايز%20أطلب%20Kind%20sticker"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a><a class="btn-price" target="_blank" href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Kind%20sticker">اسأل عن السعر</a></div></div>
 </div>
 
 <div class="product-card" data-category="sticker">
-  <div class="product-img-wrap">
-    <img src="p9.jpg" alt="Bloom sticker" data-name="Bloom sticker">
-    <div class="product-overlay">
-      <button class="overlay-btn" onclick="openPopup('p9.jpg','Bloom sticker')">عرض الصورة</button>
-    </div>
-  </div>
-  <div class="product-info">
-    <div class="product-category">ستيكر</div>
-    <div class="product-name">Bloom Sticker</div>
-    <div class="product-actions">
-      <a class="btn-wa" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أطلب%20Bloom%20sticker">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
-      <a class="btn-price" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Bloom%20sticker">
-        اسأل عن السعر
-      </a>
-    </div>
-  </div>
+  <div class="product-img-wrap"><img src="p9.jpg" alt="Bloom sticker"><div class="product-overlay"><button class="overlay-btn" onclick="openPopup('p9.jpg','Bloom sticker')">عرض الصورة</button></div></div>
+  <div class="product-info"><div class="product-category">ستيكر</div><div class="product-name">Bloom Sticker</div><div class="product-actions"><a class="btn-wa" target="_blank" href="https://wa.me/201004782276?text=عايز%20أطلب%20Bloom%20sticker"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a><a class="btn-price" target="_blank" href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Bloom%20sticker">اسأل عن السعر</a></div></div>
 </div>
 
 <div class="product-card" data-category="sticker">
-  <div class="product-img-wrap">
-    <img src="p10.jpg" alt="Canopus sticker" data-name="Canopus sticker">
-    <div class="product-overlay">
-      <button class="overlay-btn" onclick="openPopup('p10.jpg','Canopus sticker')">عرض الصورة</button>
-    </div>
-    <span class="product-badge">✦ براند</span>
-  </div>
-  <div class="product-info">
-    <div class="product-category">ستيكر</div>
-    <div class="product-name">Canopus Sticker</div>
-    <div class="product-actions">
-      <a class="btn-wa" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أطلب%20Canopus%20sticker">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
-      <a class="btn-price" target="_blank"
-         href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Canopus%20sticker">
-        اسأل عن السعر
-      </a>
-    </div>
-  </div>
+  <div class="product-img-wrap"><img src="p10.jpg" alt="Canopus sticker"><div class="product-overlay"><button class="overlay-btn" onclick="openPopup('p10.jpg','Canopus sticker')">عرض الصورة</button></div><span class="product-badge">✦ براند</span></div>
+  <div class="product-info"><div class="product-category">ستيكر</div><div class="product-name">Canopus Sticker</div><div class="product-actions"><a class="btn-wa" target="_blank" href="https://wa.me/201004782276?text=عايز%20أطلب%20Canopus%20sticker"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a><a class="btn-price" target="_blank" href="https://wa.me/201004782276?text=عايز%20أعرف%20سعر%20Canopus%20sticker">اسأل عن السعر</a></div></div>
 </div>
 ```
 
   </div>
 </div>
-
-<!-- SOCIAL -->
 
 <section class="social-section">
-  <div class="section-tag">تابعنا</div>
-  <h2 class="section-title" style="color:white; margin-bottom: 32px;">على السوشيال ميديا</h2>
+  <div class="section-tag dark">تابعنا</div>
+  <h2 class="section-title" style="margin-top:12px;">على <span class="accent">السوشيال ميديا</span></h2>
   <div class="social-links">
-    <a class="social-link fb" target="_blank"
-       href="https://www.facebook.com/profile.php?id=61584850487341&mibextid=wwXIfr">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      Facebook
-    </a>
-    <a class="social-link ig" target="_blank"
-       href="https://www.instagram.com/canopus_notebooks?igsh=N29vdHBkaWh3NDNk">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      Instagram
-    </a>
+    <a class="social-link fb" target="_blank" href="https://www.facebook.com/profile.php?id=61584850487341&mibextid=wwXIfr"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</a>
+    <a class="social-link ig" target="_blank" href="https://www.instagram.com/canopus_notebooks?igsh=N29vdHBkaWh3NDNk"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
   </div>
 </section>
-
-<!-- ABOUT -->
 
 <section class="about-section">
+  <img class="about-logo" src="logo.jpg" alt="Canopus">
   <div class="about-content">
     <div class="section-tag">من نحن</div>
-    <h2 class="section-title">براند مصري <span class="highlight">بروح مختلفة</span></h2>
-    <p>
-      Canopus براند مصري متخصص في النوت بوك والستيكرز بجودة عالية وتصميم عصري.
-      كل منتج بيتعمل بالإيد بعناية وحب — مش مجرد بضاعة، ده تعبير عن شخصيتك.
-      اطلب أو اسأل عن السعر والتوفر عبر واتساب في أي وقت.
-    </p>
-  </div>
-  <div class="about-stats">
-    <div class="stat-card">
-      <div class="stat-num">10+</div>
-      <div class="stat-label">منتج متاح</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">صنع بالإيد</div>
+    <h2 class="section-title">براند مصري <span class="accent">بروح مختلفة</span></h2>
+    <p>Canopus براند مصري متخصص في النوت بوك والستيكرز بجودة عالية وتصميم عصري. كل منتج بيتعمل بالإيد بعناية وحب — مش مجرد بضاعة، ده تعبير عن شخصيتك.</p>
+    <div class="about-stats">
+      <div class="stat-card"><div class="stat-num">10<span>+</span></div><div class="stat-label">منتج متاح</div></div>
+      <div class="stat-card"><div class="stat-num">100<span>%</span></div><div class="stat-label">صنع بالإيد</div></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-
 <footer class="footer">
-  <div class="footer-logo">
-    <span>✦</span> CANOPUS
-  </div>
+  <img class="footer-logo" src="logo.jpg" alt="Canopus">
   <div class="footer-copy">© 2026 Canopus Notebooks — جميع الحقوق محفوظة</div>
 </footer>
-
-<!-- POPUP -->
 
 <div class="popup-overlay" id="popup">
   <div class="popup-inner">
     <button class="popup-close" id="popupClose">✕</button>
     <img id="popupImg" src="" alt="">
-    <div class="popup-product-name">
-      <span id="popupName"></span>
-      <a class="popup-wa-btn" id="popupWaBtn" target="_blank" href="#">
-        <svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>
-        اطلب الآن
-      </a>
+    <div class="popup-footer">
+      <span class="popup-name" id="popupName"></span>
+      <a class="popup-wa-btn" id="popupWaBtn" target="_blank" href="#"><svg class="wa-svg" viewBox="0 0 32 32"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.45-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.91 2.92 4.62 4.1.64.28 1.14.44 1.53.56.64.2 1.23.17 1.69.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/><path d="M16.02 3C9.38 3 4 8.38 4 15.02c0 2.34.67 4.52 1.83 6.37L4 29l7.78-1.78a12 12 0 0 0 4.24.77C22.66 28 28 22.62 28 15.98 28 9.34 22.66 3 16.02 3zm0 22.02c-1.38 0-2.72-.29-3.95-.86l-.28-.13-4.62 1.06 1.02-4.5-.15-.29a9.9 9.9 0 0 1-1.32-4.96c0-5.48 4.46-9.94 9.94-9.94 5.48 0 9.94 4.46 9.94 9.94 0 5.48-4.46 9.94-9.94 9.94z"/></svg>اطلب الآن</a>
     </div>
   </div>
 </div>
 
 <script>
-  // Filter
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const productCards = document.querySelectorAll('.product-card');
-
-  filterBtns.forEach(btn => {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      productCards.forEach(card => {
-        if (filter === 'all' || card.dataset.category === filter) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.product-card').forEach(c => {
+        c.classList.toggle('hidden', f !== 'all' && c.dataset.category !== f);
       });
     });
   });
 
-  // Popup
   const popup = document.getElementById('popup');
-  const popupImg = document.getElementById('popupImg');
-  const popupName = document.getElementById('popupName');
-  const popupWaBtn = document.getElementById('popupWaBtn');
-  const popupClose = document.getElementById('popupClose');
-
   function openPopup(src, name) {
-    popupImg.src = src;
-    popupName.textContent = name;
-    popupWaBtn.href = `https://wa.me/201004782276?text=عايز%20أطلب%20${encodeURIComponent(name)}`;
+    document.getElementById('popupImg').src = src;
+    document.getElementById('popupName').textContent = name;
+    document.getElementById('popupWaBtn').href = `https://wa.me/201004782276?text=عايز%20أطلب%20${encodeURIComponent(name)}`;
     popup.classList.add('open');
   }
-
-  popupClose.addEventListener('click', () => popup.classList.remove('open'));
+  document.getElementById('popupClose').addEventListener('click', () => popup.classList.remove('open'));
   popup.addEventListener('click', e => { if (e.target === popup) popup.classList.remove('open'); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') popup.classList.remove('open'); });
 </script>
